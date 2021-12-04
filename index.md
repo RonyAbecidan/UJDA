@@ -7,7 +7,7 @@
 
 ## Architecture used
 
-![](https://svgshare.com/i/cX2.svg)
+![](https://svgshare.com/i/cWR.svg)
 
 
 ## Domain Adaptation in action
