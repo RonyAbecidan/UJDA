@@ -2,6 +2,7 @@
 @import "fonts";
 @import "rouge-base16-dark.scss";
 
+
 body {
   padding:0px 0 20px 0px;
   margin: 0px;
@@ -164,6 +165,7 @@ dt {
   background: url(../images/nav-bg.gif) #353535;
   border-bottom: 4px solid #434343;
   box-shadow: 0px 1px 3px rgba(0,0,0,.25);
+  display:none;
 
   nav {
     max-width: 650px;
@@ -231,7 +233,7 @@ dt {
 }
 
 section {
-  max-width:650px;
+  max-width:100%;
   padding: 30px 0px 50px 0px;
   margin: 20px 0;
   margin-top: 70px;
