@@ -1,123 +1,80 @@
----
-layout: default
----
+#### Rony Abecidan, Vincent Itier, Jeremie Boulanger, Patrick Bas
+ [![](https://img.shields.io/badge/Article-2E86C1?style=for-the-badge)](https://hal.archives-ouvertes.fr/hal-03374780/) | [![](https://img.shields.io/badge/GitLab-330F63?style=for-the-badge&logo=gitlab&logoColor=white)](https://gitlab.cristal.univ-lille.fr/pbas/unsupervisedjpegadaptation) 
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+*Domain adaptation is a major issue for doing practical forensics. Since examined images are likely to come from a different development pipeline compared to the ones used for training our models, that may disturb them by a lot, degrading their performances. In this paper, we present a method enabling to make a forgery detector more robust to distributions different but related to its training one, inspired by Long et. Al (2015) . The strategy exhibited in this paper foster a detector to find a feature invariant space where source and target distributions are close. Our study deals more precisely with discrepancies observed due to JPEG compressions and our experiments reveal that the proposed adaptation scheme can reasonably reduce the mismatch, even with a rather small target set with no labels when the source domain is properly selected. On top of that, when a small portion of labelled target images is available this method reduces the gap with mix training while being unsupervised.*
 
-[Link to another page](./another-page.html).
+![](https://svgshare.com/i/cXU.svg)
 
-There should be whitespace between paragraphs.
+## Architecture used
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+![](https://svgshare.com/i/cX2.svg)
 
-# Header 1
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+## Domain Adaptation in action
 
-## Header 2
+- **Source** : Half of images from the Splicing category of DEFACTO 
+- **Target** : Other half of the images from the Splicing category of DEFACTO, compressed to JPEG with a quality factor of 5%
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+To have a quick idea of the adaptation impact on the training phase, we selected a batch of size 512 from the target and, we represented the evolution of the final embeddings distributions from this batch during the training according to the setups **SrcOnly** and **Update($`\sigma=8`$)**
+described in the paper. The training relative to the SrcOnly setup is on the left meanwhile the one relative to **Update($`\sigma=8`$)** is on the right.
 
-### Header 3
+![](https://s10.gifyu.com/images/Adaptationf80f69ab9e1dfcaa.gif)
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
+- As you can observe, in the **SrcOnly** setup, the forgery detector is more and more prone to false alarms, certainly because compressing images to QF5 results in creating artifacts in the high frequencies that can be misinterpreted by the model. However, it has no real difficulty to identify correctly the forged images.
+
+- In parallel, in the **Update** setup, the forgery detector is more informed and make less false alarms during the training.
+
+## Main references
+
+```BibTeX
+@inproceedings{mandelli2020training,
+  title={Training {CNNs} in Presence of {JPEG} Compression: Multimedia Forensics vs Computer Vision},
+  author={Mandelli, Sara and Bonettini, Nicol{\`o} and Bestagini, Paolo and Tubaro, Stefano},
+  booktitle={2020 IEEE International Workshop on Information Forensics and Security (WIFS)},
+  pages={1--6},
+  year={2020},
+  organization={IEEE}
+}
+
+@inproceedings{bayar2016,
+  title={A deep learning approach to universal image manipulation detection using a new convolutional layer},
+  author={Bayar, Belhassen and Stamm, Matthew C},
+  booktitle={Proceedings of the 4th ACM workshop on information hiding and multimedia security (IH\&MMSec)},
+  pages={5--10},
+  year={2016}
+}
+
+@inproceedings{long2015learning,
+  title={Learning transferable features with deep adaptation networks},
+  author={Long, M. and Cao, Y. and Wang, J. and Jordan, M.},
+  booktitle={International Conference on Machine Learning},
+  pages={97--105},
+  year={2015},
+  organization={PMLR}
+}
+
+
+@inproceedings{DEFACTODataset, 
+	author = {Ga{\"e}l Mahfoudi and Badr Tajini and Florent Retraint and Fr{\'e}d{\'e}ric Morain-Nicolier and Jean Luc Dugelay and Marc Pic},
+	title={DEFACTO: Image and Face Manipulation Dataset},
+	booktitle={27th European Signal Processing Conference (EUSIPCO 2019)},
+	year={2019}
 }
 ```
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
+---
+### If you wish to refer to our paper,  please use the following BibTeX entry
+```BibTeX
+@inproceedings{abecidan:hal-03374780,
+  TITLE = {Unsupervised JPEG Domain Adaptation for Practical Digital Image Forensics},
+  AUTHOR = {Abecidan, Rony and Itier, Vincent and Boulanger, J{\'e}r{\'e}mie and Bas, Patrick},
+  URL = {https://hal.archives-ouvertes.fr/hal-03374780},
+  BOOKTITLE = {{WIFS 2021 : IEEE International Workshop on Information Forensics and Security}},
+  ADDRESS = {Montpellier, France},
+  PUBLISHER = {{IEEE}},
+  YEAR = {2021},
+  MONTH = Dec,
+  PDF = {https://hal.archives-ouvertes.fr/hal-03374780/file/2021_wifs.pdf},
+  HAL_ID = {hal-03374780}
+}
 ```
