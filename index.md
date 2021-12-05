@@ -18,7 +18,7 @@
 To have a quick idea of the adaptation impact on the training phase, we selected a batch of size 512 from the target and, we represented the evolution of the final embeddings distributions from this batch during the training according to the setups **SrcOnly** and **Update($`\sigma=8`$)**
 described in the paper. The training relative to the SrcOnly setup is on the left meanwhile the one relative to **Update($`\sigma=8`$)** is on the right.
 
-![](https://s10.gifyu.com/images/Adaptationf80f69ab9e1dfcaa.gif)
+![](https://s10.gifyu.com/images/Adaptation9dfae7fc28cc8ef2.gif)
 
 - As you can observe, in the **SrcOnly** setup, the forgery detector is more and more prone to false alarms, certainly because compressing images to QF5 results in creating artifacts in the high frequencies that can be misinterpreted by the model. However, it has no real difficulty to identify correctly the forged images.
 
