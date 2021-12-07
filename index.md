@@ -4,7 +4,7 @@
 *Domain adaptation is a major issue for doing practical forensics. Since examined images are likely to come from a different development pipeline compared to the ones used for training our models, that may disturb them by a lot, degrading their performances. In this paper, we present a method enabling to make a forgery detector more robust to distributions different but related to its training one, inspired by Long et. Al (2015) . The strategy exhibited in this paper foster a detector to find a feature invariant space where source and target distributions are close. Our study deals more precisely with discrepancies observed due to JPEG compressions and our experiments reveal that the proposed adaptation scheme can reasonably reduce the mismatch, even with a rather small target set with no labels when the source domain is properly selected. On top of that, when a small portion of labelled target images is available this method reduces the gap with mix training while being unsupervised.*
 
 
-Don't hesitate to click on the figures below to see them better
+### Don't hesitate to click on the figures below to see them better
 
 [![](https://svgshare.com/i/cX6.svg)](https://svgshare.com/i/cX6.svg)
 
@@ -21,7 +21,7 @@ Don't hesitate to click on the figures below to see them better
 To have a quick idea of the adaptation impact on the training phase, we selected a batch of size 512 from the target and, we represented the evolution of the final embeddings distributions from this batch during the training according to the setups **SrcOnly** and **Update($`\sigma=8`$)**
 described in the paper. The training relative to the SrcOnly setup is on the left meanwhile the one relative to **Update($`\sigma=8`$)** is on the right.
 
-[![](https://s10.gifyu.com/images/Adaptation9dfae7fc28cc8ef2.gif)](https://s10.gifyu.com/images/Adaptation9dfae7fc28cc8ef2.gif)
+[![](https://s10.gifyu.com/images/Adaptationf80f69ab9e1dfcaa.gif)](https://s10.gifyu.com/images/Adaptationf80f69ab9e1dfcaa.gif)
 
 - As you can observe, in the **SrcOnly** setup, the forgery detector is more and more prone to false alarms, certainly because compressing images to QF5 results in creating artifacts in the high frequencies that can be misinterpreted by the model. However, it has no real difficulty to identify correctly the forged images.
 
